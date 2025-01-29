@@ -60,8 +60,25 @@ function checkUI() {
     itemFilter.style.display = "block";
   }
 }
+function filterItems(e) {
+  const items = document.querySelectorAll("li");
+  const text = e.target.value.toLowerCase();
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+    if (itemName.indexOf(text) != -1) {
+      console.log(true);
+      item.style.display = "flex";
+    } else {
+      console.log(false);
+      item.style.display = "none";
+    }
+  });
+  console.log(text);
+  console.log(items);
+}
 // EventListeners
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 clearBtn.addEventListener("click", cleraItems);
+itemFilter.addEventListener("input", filterItems);
 checkUI();
